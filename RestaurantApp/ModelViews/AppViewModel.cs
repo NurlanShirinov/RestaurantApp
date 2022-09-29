@@ -1,4 +1,5 @@
-﻿using RestaurantApp.Models;
+﻿using RestaurantApp.Commands;
+using RestaurantApp.Models;
 using RestaurantApp.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,28 @@ namespace RestaurantApp.ModelViews
 		public FakeRepo	 BeerRepository { get; set; }
 		public List<Beer> Beers { get; set; }
 
-		//private Beer beer;
+		private Beer beer;
 
-		//public Beer Beer
-		//{
-		//	get { return beer; }
-		//	set { beer = value; }   
-		//}
+		public Beer Beer
+		{
+			get { return beer; }
+			set { beer = value; }
+		}
+
+
+		public RelayCommand	 SelectedCommand { get; set; }
 
 		public AppViewModel()
 		{
 			BeerRepository = new FakeRepo();
 			Beers = BeerRepository.GetAll();
+
+			SelectedCommand = new RelayCommand(o =>
+			{
+				var beer = o as Beer;
+				Beer = beer;
+
+			});
 
         }
 	}

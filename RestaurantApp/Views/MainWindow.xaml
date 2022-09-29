@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RestaurantApp"
+        xmlns:local="clr-namespace:RestaurantApp" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:modelviews="clr-namespace:RestaurantApp.ModelViews" d:DataContext="{d:DesignInstance Type=modelviews:AppViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
     <Border CornerRadius="20" BorderThickness="3" Background="#F4F0E8">
@@ -18,12 +18,18 @@
                     <ComboBox Name="MyComboBox"
                               Width="150" 
                               Height="35"
+                              FontStyle="Oblique"
                               Background="Beige" 
                               BorderThickness="5" 
                               Canvas.Top="30" 
                               Canvas.Left="300"
-                              ItemsSource="{Binding Beers }"
+                              ItemsSource="{Binding Beers}"
                               DisplayMemberPath="Name">
+                    <i:Intera>ction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged" >
+                            <i:InvokeCommandAction Command="{Binding SelectedCommand}" CommandParameter="{Binding ElementName=mycombobox,Path=SelectedItem}" ></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Intera>
                 </ComboBox>
                 <Image Width="100"
                        Height="70"
@@ -51,10 +57,20 @@
                        Canvas.Top="5"
                        Source="/Images/p1.png">
                 </Image>
-
-
-
             </Canvas>
+
+            <Grid Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Image Source="{Binding Beers.Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged} "></Image>
+                    </Grid>
+                    
+                </Grid>
+            </Grid>
         </Grid>
     </Border>
 
