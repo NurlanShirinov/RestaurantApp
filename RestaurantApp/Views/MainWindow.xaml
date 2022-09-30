@@ -24,12 +24,14 @@
                               Canvas.Top="30" 
                               Canvas.Left="300"
                               ItemsSource="{Binding Beers}"
-                              DisplayMemberPath="Name">
-                    <i:Intera>ction.Triggers>
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding Beer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged" >
-                            <i:InvokeCommandAction Command="{Binding SelectedCommand}" CommandParameter="{Binding ElementName=mycombobox,Path=SelectedItem}" ></i:InvokeCommandAction>
+                            <i:InvokeCommandAction Command="{Binding SelectedCommand}" CommandParameter="{Binding ElementName=MyComboBox,Path=SelectedItem}" ></i:InvokeCommandAction>
                         </i:EventTrigger>
-                    </i:Intera>
+                    </i:Interaction.Triggers>
+
                 </ComboBox>
                 <Image Width="100"
                        Height="70"
@@ -65,10 +67,23 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Image Source="{Binding Beers.Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged} "></Image>
+                    <Grid Grid.Column="0" x:Name="photoGrid">
+                        <Image Width="380" Height="250" Source="{Binding Beer.Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></Image>
                     </Grid>
                     
+                    <Grid Grid.Column="1">
+                        <Canvas>
+                            <Label FontSize="26" Canvas.Top="10" Canvas.Left="15" >Name:</Label>
+                            <TextBox FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="15" Background="Transparent"></TextBox>
+
+                            <Label FontSize="26" Canvas.Top="70" Canvas.Left="15" >Price:</Label>
+                            <TextBox FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="70" Background="Transparent"></TextBox>
+
+                            <Label FontSize="26" Canvas.Top="130" Canvas.Left="15" >Volume:</Label>
+                            <TextBox FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="130" Background="Transparent"></TextBox>
+                        </Canvas>
+                        
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

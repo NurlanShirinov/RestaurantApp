@@ -24,7 +24,9 @@ namespace RestaurantApp
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new AppViewModel();
+            var vm=new AppViewModel();
+            vm.MyGrid = myGrid;
+            this.DataContext = vm;
         }
     }
 }
