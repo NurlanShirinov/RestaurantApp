@@ -170,13 +170,9 @@
                                Canvas.Left="480"
                                Width="50"
                                Height="30"
-                               Text="{Binding TotalAmount}"
+                               Text="{Binding TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                >
-                        <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="TextChanged" >
-                            <i:InvokeCommandAction Command="{Binding ChangedCommand, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></i:InvokeCommandAction>
-                        </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                  
                         
                     </TextBlock>
 

@@ -71,6 +71,7 @@ namespace RestaurantApp.ModelViews
             {
 
                 BeerCount++;
+                TotalAmount = BeerCount * Beer.Price;
 
             });
 
@@ -95,7 +96,7 @@ namespace RestaurantApp.ModelViews
 
             BuyCommand = new RelayCommand(o =>
             {
-                TotalAmount = Beer.Price * BeerCount;
+                MessageBox.Show($"Succesfully Bought Price : {TotalAmount}$");
             });
 
          
