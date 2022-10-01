@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
 
             <Canvas Grid.Row="0">
-                    <ComboBox Name="MyComboBox"
+                <ComboBox Name="MyComboBox"
                               Width="150" 
                               Height="35"
                               FontStyle="Oblique"
@@ -38,7 +38,7 @@
                        Canvas.Left="10" 
                        Canvas.Top="5"
                        Source="/Images/p2.png">
-                    
+
                 </Image>
                 <Image Width="100"
                        Height="70"
@@ -46,7 +46,7 @@
                        Canvas.Top="5"
                        Source="/Images/p3.png">
                 </Image>
-                
+
                 <Image Width="100"
                        Height="70"
                        Canvas.Right="200" 
@@ -70,23 +70,125 @@
                     <Grid Grid.Column="0" x:Name="photoGrid">
                         <Image Width="380" Height="250" Source="{Binding Beer.Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></Image>
                     </Grid>
-                    
+
                     <Grid Grid.Column="1">
                         <Canvas>
                             <Label FontSize="26" Canvas.Top="10" Canvas.Left="15" >Name:</Label>
-                            <TextBox FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="15" Background="Transparent"></TextBox>
+                            <TextBox Text="{Binding Beer.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="15" Background="Transparent"></TextBox>
 
                             <Label FontSize="26" Canvas.Top="70" Canvas.Left="15" >Price:</Label>
-                            <TextBox FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="70" Background="Transparent"></TextBox>
+                            <TextBox Text="{Binding Beer.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="70" Background="Transparent"></TextBox>
 
                             <Label FontSize="26" Canvas.Top="130" Canvas.Left="15" >Volume:</Label>
-                            <TextBox FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="130" Background="Transparent"></TextBox>
+                            <TextBox Text="{Binding Beer.Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="26" Width="150" Height="35" Canvas.Left="150" Canvas.Top="130" Background="Transparent"></TextBox>
+
+                            <Border BorderBrush="Black"
+                            CornerRadius="20"
+                            Width="25"
+                            Height="25"
+                            BorderThickness="1"
+                                    Canvas.Bottom="30"
+                                    Canvas.Left="100">
+                                <Button Background="Transparent"
+                                        BorderThickness="0"
+                                        Content="-"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Command="{Binding CountDownCommand}"
+                                       >
+                                </Button>
+                            </Border>
+                            <TextBlock Name="CountTxtB"
+                                       Width="30"
+                                       Height="30"
+                                       Canvas.Bottom="30"
+                                       Canvas.Left="150"
+                                       Text="{Binding BeerCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       FontSize="20">
+                            </TextBlock>
+                            <Border BorderBrush="Black"
+                            CornerRadius="20"
+                            Width="25"
+                            Height="25"
+                            BorderThickness="1"
+                                    Canvas.Bottom="30"
+                                    Canvas.Left="200">
+                                <Button Background="Transparent"
+                                        BorderThickness="0"
+                                        Content="+"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                         Command="{Binding CountUpCommand}">
+                                </Button>
+                            </Border>
                         </Canvas>
-                        
                     </Grid>
                 </Grid>
             </Grid>
+
+            <Grid Grid.Row="2">
+                <Canvas>
+                    <Border Canvas.Left="20"
+                            CornerRadius="5"
+                            BorderThickness="5"
+                            BorderBrush="Black">
+                        <Button Width="100"
+                                Height="25"
+                                Content="Buy"
+                                FontFamily="Georgia"
+                                FontSize="15"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding BuyCommand}"
+                                ></Button>
+                    </Border>
+
+                    <Border Canvas.Left="150"
+                            CornerRadius="5"
+                            BorderThickness="5"
+                            BorderBrush="Black">
+                        <Button Width="100"
+                                Height="25"
+                                Content="Reset"
+                                FontFamily="Georgia"
+                                FontSize="15"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding ResetCommand}"
+                                ></Button>
+                    </Border>
+
+                    <Label Content="Total Amount :"
+                           FontSize="25"
+                           FontFamily="Georgia"
+                           Canvas.Left="300">
+                    </Label>
+
+                    <TextBlock Name="TotalAmountLbl"
+                               FontSize="25"
+                               FontFamily="Georgia"
+                               Canvas.Left="480"
+                               Width="50"
+                               Height="30"
+                               Text="{Binding TotalAmount}"
+                               >
+                        <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged" >
+                            <i:InvokeCommandAction Command="{Binding ChangedCommand, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        
+                    </TextBlock>
+
+                    <Label Content="$"
+                           FontSize="25"
+                           FontFamily="Georgia"
+                           Canvas.Left="530">
+                    </Label>
+
+                </Canvas>
+            </Grid>
+            
         </Grid>
     </Border>
-
 </Window>
